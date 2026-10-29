@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpecForge - Course Specification Governance &amp; Approvals</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Typography Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration JSON Verbatim Injection -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#ffdad6",
+            "surface-variant": "#dee2ec",
+            "on-primary-container": "#ff879a",
+            "on-secondary-fixed": "#400012",
+            "surface-tint": "#a03c4f",
+            "on-tertiary-fixed-variant": "#4b4547",
+            "surface-container-high": "#e4e8f2",
+            "on-surface": "#171c23",
+            "background": "#f8f9ff",
+            "on-secondary-container": "#740c2a",
+            "surface-container": "#eaeef8",
+            "on-primary-fixed-variant": "#812438",
+            "on-surface-variant": "#554244",
+            "surface": "#f8f9ff",
+            "surface-container-low": "#f0f4fd",
+            "surface-dim": "#d6dae4",
+            "surface-bright": "#f8f9ff",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "outline-variant": "#dbc0c2",
+            "secondary-fixed": "#ffd9dd",
+            "on-tertiary": "#ffffff",
+            "primary": "#5a031d",
+            "tertiary-container": "#443f41",
+            "inverse-on-surface": "#edf1fb",
+            "tertiary-fixed": "#eae0e2",
+            "inverse-surface": "#2c3138",
+            "on-tertiary-fixed": "#1f1a1c",
+            "tertiary-fixed-dim": "#cdc4c6",
+            "on-tertiary-container": "#b2aaac",
+            "outline": "#887173",
+            "primary-container": "#781d32",
+            "on-primary-fixed": "#400012",
+            "inverse-primary": "#ffb2bb",
+            "tertiary": "#2e292b",
+            "primary-fixed-dim": "#ffb2bb",
+            "surface-container-highest": "#dee2ec",
+            "primary-fixed": "#ffd9dd",
+            "on-background": "#171c23",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#fe798f",
+            "secondary-fixed-dim": "#ffb2bb",
+            "on-secondary-fixed-variant": "#861d37",
+            "on-error-container": "#93000a",
+            "secondary": "#a6364d",
+            "error": "#ba1a1a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2rem",
+            "space-lg": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-xl": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "label-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "code-tabular": ["JetBrains Mono"],
+            "headline-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "headline-xl": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "600" }],
+            "code-tabular": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "500" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.45rem", "fontWeight": "400" }],
+            "headline-xl-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.35rem", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+      display: inline-block;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-primary selection:text-on-primary">
+<!-- TOP APP BAR -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-14 sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant">
+<!-- Brand Anchor & Session Context -->
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-2">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">SpecForge</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-code-tabular">
+          AY 2024–25
+        </span>
+</div>
+<span class="h-4 w-px bg-outline-variant"></span>
+<!-- Role Switcher Segmented Control -->
+<nav aria-label="Role View Selector" class="flex items-center bg-surface-container-low p-0.5 rounded-full border border-outline-variant">
+<button class="px-3 py-1 rounded-full text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+          Author
+        </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-surface-container-lowest text-primary-container shadow-sm border border-outline-variant transition-all" type="button">
+          Reviewer
+        </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+          HOD
+        </button>
+</nav>
+<!-- Document Stage Status Pill -->
+<div class="hidden lg:flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-low border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-on-surface font-medium">Under Peer Review</span>
+</div>
+</div>
+<!-- Trailing Actions & Faculty Profile -->
+<div class="flex items-center space-x-3">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant text-label-md font-label-md text-on-surface hover:bg-surface-container transition-colors flex items-center space-x-1.5" type="button">
+<span class="material-symbols-outlined text-base">save</span>
+<span>Save Draft</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary text-label-md font-label-md hover:bg-primary transition-colors flex items-center space-x-1.5" type="button">
+<span class="material-symbols-outlined text-base">assignment_turned_in</span>
+<span>Submit for Review</span>
+</button>
+<span class="h-4 w-px bg-outline-variant mx-1"></span>
+<!-- Notification & Help Utility Icons -->
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notifications" type="button">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Help Guide" type="button">
+<span class="material-symbols-outlined text-xl">help_outline</span>
+</button>
+<span class="h-4 w-px bg-outline-variant mx-1"></span>
+<!-- Profile Indicator -->
+<div class="flex items-center space-x-2 pl-1">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-label-sm font-label-sm font-bold tracking-tight">
+          AT
+        </div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-label-md font-label-md text-on-surface leading-tight">Dr. Aris Thorne</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant leading-tight">Assoc. Professor, CSE</span>
+</div>
+</div>
+</div>
+</header>
+<!-- WORKSPACE WRAPPER -->
+<div class="flex flex-1 overflow-hidden">
+<!-- LEFT SIDEBAR WORKFLOW STEPPER -->
+<aside class="fixed left-0 top-14 bottom-0 w-[260px] flex flex-col justify-between p-space-md z-40 bg-surface-container-low border-r border-outline-variant overflow-y-auto">
+<div>
+<!-- Course Meta Card Badge -->
+<div class="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant mb-4">
+<div class="flex items-center justify-between mb-1">
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-primary-container text-on-primary font-code-tabular font-bold">CS302</span>
+<span class="text-label-sm font-label-sm font-code-tabular text-on-surface-variant font-medium">4.0 Credits</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface font-semibold truncate" title="Data Structures &amp; Algorithms">Data Structures &amp; Algorithms</p>
+<div class="mt-1 flex items-center space-x-2 text-label-sm font-label-sm text-on-surface-variant font-code-tabular">
+<span>L-T-P: 3-1-0</span>
+<span>•</span>
+<span>Core Degree</span>
+</div>
+</div>
+<!-- Workflow Linear Steps -->
+<div class="mb-2 px-1 flex items-center justify-between">
+<span class="text-label-sm font-label-sm font-bold tracking-wider text-on-surface-variant">WORKFLOW STEPS</span>
+<span class="text-label-sm font-label-sm font-code-tabular text-primary font-semibold">5 / 6</span>
+</div>
+<nav aria-label="Course Spec Workflow" class="space-y-1 relative">
+<!-- Step 1: Upload (Completed) -->
+<a class="flex items-center justify-between pl-4 pr-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+<span class="text-label-md font-label-md text-on-surface">Upload</span>
+</div>
+<span class="material-symbols-outlined text-base text-outline-variant group-hover:text-on-surface-variant">upload_file</span>
+</a>
+<!-- Step 2: Spec (Completed) -->
+<a class="flex items-center justify-between pl-4 pr-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+<span class="text-label-md font-label-md text-on-surface">Spec</span>
+</div>
+<span class="material-symbols-outlined text-base text-outline-variant group-hover:text-on-surface-variant">assignment</span>
+</a>
+<!-- Step 3: CO-PO-PSO Map (Completed) -->
+<a class="flex items-center justify-between pl-4 pr-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+<span class="text-label-md font-label-md text-on-surface truncate max-w-[130px]">CO-PO-PSO Map</span>
+</div>
+<span class="material-symbols-outlined text-base text-outline-variant group-hover:text-on-surface-variant">table_chart</span>
+</a>
+<!-- Step 4: Checks (Completed) -->
+<a class="flex items-center justify-between pl-4 pr-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+<span class="text-label-md font-label-md text-on-surface">Checks</span>
+</div>
+<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-code-tabular bg-surface-container text-on-surface">0 Err</span>
+</a>
+<!-- Step 5: Workflow (Active) -->
+<div class="bg-surface-container-lowest text-primary font-label-md text-label-md border-l-4 border-primary pl-3 py-2.5 rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-label-sm font-bold">
+                5
+              </span>
+<span class="font-bold text-primary">Workflow</span>
+</div>
+<span class="material-symbols-outlined text-base text-primary">rule_folder</span>
+</div>
+<!-- Step 6: Export (Upcoming) -->
+<a class="flex items-center justify-between pl-4 pr-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors opacity-70 group" href="#">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full border border-outline-variant text-on-surface-variant flex items-center justify-center text-label-sm">
+                6
+              </span>
+<span class="text-label-md font-label-md">Export</span>
+</div>
+<span class="material-symbols-outlined text-base text-outline-variant group-hover:text-on-surface-variant">picture_as_pdf</span>
+</a>
+</nav>
+<!-- Contextual Action within Sidebar -->
+<div class="mt-4 pt-3 border-t border-outline-variant">
+<button class="w-full py-1.5 px-3 rounded-lg border border-dashed border-outline-variant text-label-sm font-label-sm text-on-surface-variant hover:border-primary hover:text-primary transition-colors flex items-center justify-center space-x-1" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Add Section</span>
+</button>
+</div>
+</div>
+<!-- Footer Anchor Links -->
+<div class="pt-4 border-t border-outline-variant space-y-1">
+<a class="flex items-center space-x-2 text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface py-1.5 px-2 rounded hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-base">menu_book</span>
+<span>Accreditation Guidelines</span>
+</a>
+<a class="flex items-center space-x-2 text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface py-1.5 px-2 rounded hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-base">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- MAIN CENTRAL DOCUMENT STAGE -->
+<main class="ml-[260px] flex-1 min-h-[calc(100vh-3.5rem)] pb-24 overflow-y-auto">
+<div class="max-w-[1400px] mx-auto px-margin-desktop py-space-lg">
+<!-- Breadcrumb Hierarchy -->
+<nav aria-label="Breadcrumb" class="flex items-center space-x-2 text-label-sm font-label-sm text-on-surface-variant mb-2">
+<a class="hover:text-primary transition-colors" href="#">Curriculum</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Department of Computer Science</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors font-code-tabular" href="#">CS-302</a>
+<span>/</span>
+<span class="text-on-surface font-medium">Step 05: Approval &amp; Departmental Sign-off</span>
+</nav>
+<!-- Document Header Banner -->
+<div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-outline-variant pb-space-md mb-space-lg">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface font-bold tracking-tight">Course Specification Governance &amp; Approvals</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-0.5">
+              Multi-tier academic review pipeline compliant with autonomous institutional governance and NBA Tier-1 sign-off protocols.
+            </p>
+</div>
+<div class="mt-3 md:mt-0 flex items-center space-x-2">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container border border-outline-variant text-on-surface">
+<span class="material-symbols-outlined text-sm mr-1 text-primary">policy</span>
+              NBA Criterion 3.1 Sign-Off
+            </span>
+</div>
+</div>
+<!-- 1. HORIZONTAL STATUS TRACKER -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-space-md mb-space-lg">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-md font-label-md text-on-surface font-bold">ACCREDITATION APPROVAL PIPELINE</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Step 3 of 5 In Progress</span>
+</div>
+<!-- Pipeline Stepper Track -->
+<div class="relative flex items-center justify-between pb-2">
+<!-- Background Connecting Bar -->
+<div class="absolute left-6 right-6 top-4 h-0.5 bg-outline-variant -z-0"></div>
+<!-- Stage 1: Draft (Passed) -->
+<div class="relative z-10 flex flex-col items-center group text-center flex-1">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant text-on-surface flex items-center justify-center font-code-tabular text-label-md mb-1.5">
+<span class="material-symbols-outlined text-base font-bold">check</span>
+</div>
+<span class="text-label-md font-label-md font-semibold text-on-surface">1. Draft</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Passed</span>
+</div>
+<!-- Stage 2: Submitted (Passed) -->
+<div class="relative z-10 flex flex-col items-center group text-center flex-1">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant text-on-surface flex items-center justify-center font-code-tabular text-label-md mb-1.5">
+<span class="material-symbols-outlined text-base font-bold">check</span>
+</div>
+<span class="text-label-md font-label-md font-semibold text-on-surface">2. Submitted</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Passed</span>
+</div>
+<!-- Stage 3: Under Review (ACTIVE) -->
+<div class="relative z-10 flex flex-col items-center group text-center flex-1">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-code-tabular text-label-md font-bold mb-1.5 ring-4 ring-primary-fixed">
+<span class="material-symbols-outlined text-base animate-pulse">pending</span>
+</div>
+<span class="text-label-md font-label-md font-bold text-primary">3. Under Review</span>
+<span class="text-label-sm font-label-sm text-primary font-medium">Active Peer Board</span>
+</div>
+<!-- Stage 4: Pending HOD (Upcoming) -->
+<div class="relative z-10 flex flex-col items-center group text-center flex-1">
+<div class="w-8 h-8 rounded-full bg-surface border border-outline-variant text-on-surface-variant flex items-center justify-center font-code-tabular text-label-md mb-1.5">
+                4
+              </div>
+<span class="text-label-md font-label-md font-medium text-on-surface-variant">4. Pending HOD</span>
+<span class="text-label-sm font-label-sm text-outline">Upcoming</span>
+</div>
+<!-- Stage 5: Approved (Final) -->
+<div class="relative z-10 flex flex-col items-center group text-center flex-1">
+<div class="w-8 h-8 rounded-full bg-surface border border-outline-variant text-on-surface-variant flex items-center justify-center font-code-tabular text-label-md mb-1.5">
+<span class="material-symbols-outlined text-base">verified</span>
+</div>
+<span class="text-label-md font-label-md font-medium text-on-surface-variant">5. Approved</span>
+<span class="text-label-sm font-label-sm text-outline">Target Outcome</span>
+</div>
+</div>
+<!-- Rollback Flow Alert Pill -->
+<div class="mt-4 pt-3 border-t border-outline-variant flex items-center justify-between bg-error-container/30 px-3 py-2 rounded">
+<div class="flex items-center space-x-2 text-label-sm font-label-sm text-on-error-container">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-bold">Returned State Notice:</span>
+<span>"Returned for Revision (Rollback to Author if remarks unaddressed)"</span>
+</div>
+<span class="text-label-sm font-label-sm text-error font-medium underline cursor-pointer">
+              Review Reversion SOP
+            </span>
+</div>
+</section>
+<!-- 2. TWO-COLUMN LAYOUT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- LEFT / MAIN COLUMN: Role-Based Action Governance Panel (7 Cols) -->
+<div class="lg:col-span-7 space-y-space-lg">
+<!-- Perspective Banner Card -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-space-md shadow-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-3 mb-4">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-xl">admin_panel_settings</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-bold">
+                    Active Role Perspective: Reviewer
+                  </h2>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium">
+                  Dept. Curriculum Committee
+                </span>
+</div>
+<!-- Prerequisite Verification Checklist -->
+<div class="mb-5 bg-surface-container-low p-3.5 rounded-lg border border-outline-variant">
+<span class="text-label-sm font-label-sm font-bold text-on-surface tracking-wider block mb-2">
+                  PREREQUISITE SIGN-OFF VERIFICATION
+                </span>
+<div class="space-y-2">
+<label class="flex items-start space-x-2 text-label-sm font-label-sm text-on-surface cursor-pointer">
+<input checked="" class="mt-0.5 h-4 w-4 rounded border-outline text-primary-container focus:ring-primary" disabled="" type="checkbox"/>
+<span>All 3 blocking defects cleared in Step 4 (Specification Rule Engine)</span>
+</label>
+<label class="flex items-start space-x-2 text-label-sm font-label-sm text-on-surface cursor-pointer">
+<input checked="" class="mt-0.5 h-4 w-4 rounded border-outline text-primary-container focus:ring-primary" disabled="" type="checkbox"/>
+<span>CO-PO direct attainment formula verified &amp; normalized across 12 criteria</span>
+</label>
+<label class="flex items-start space-x-2 text-label-sm font-label-sm text-on-surface cursor-pointer">
+<input checked="" class="mt-0.5 h-4 w-4 rounded border-outline text-primary-container focus:ring-primary" disabled="" type="checkbox"/>
+<span>Question paper blueprint weights reconciled against Bloom's cognitive distribution</span>
+</label>
+</div>
+</div>
+<!-- ACTIVE ACTIONS: For Reviewer -->
+<div class="space-y-4">
+<div class="border border-primary-container/20 bg-surface-bright p-4 rounded-lg">
+<span class="text-label-md font-label-md font-bold text-primary flex items-center space-x-1.5 mb-2">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+<span>Reviewer Approval Action</span>
+</span>
+<div class="mb-4">
+<label class="flex items-start space-x-2 text-label-sm font-label-sm text-on-surface cursor-pointer select-none">
+<input checked="" class="mt-0.5 h-4 w-4 rounded border-outline text-primary-container focus:ring-primary" id="endorse_checkbox" type="checkbox"/>
+<span class="font-medium text-on-surface">
+                        I verify all COs comply with Bloom's Revised Taxonomy and NBA Criterion 3. The syllabus formulation satisfies departmental standards.
+                      </span>
+</label>
+</div>
+<button class="w-full py-2.5 px-4 rounded bg-primary-container text-on-primary hover:bg-primary text-label-lg font-label-lg font-semibold flex items-center justify-center space-x-2 transition-all" type="button">
+<span class="material-symbols-outlined text-lg">forward_to_inbox</span>
+<span>Forward to HOD with Endorsement</span>
+</button>
+</div>
+<!-- Secondary Action: Return with Comments -->
+<div class="border border-outline-variant bg-surface-container-lowest p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-md font-label-md font-bold text-on-surface flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-lg text-error">assignment_return</span>
+<span>Return Course Specification to Author</span>
+</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-code-tabular">0 / 500 chars</span>
+</div>
+<!-- Mandatory Revision Preset Tags -->
+<div class="mb-2.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant block mb-1.5">Preset Academic Revision Tags:</span>
+<div class="flex flex-wrap gap-1.5">
+<button class="text-label-sm font-label-sm px-2 py-0.5 rounded border border-outline-variant bg-surface hover:bg-surface-container text-on-surface transition-colors" type="button">
+                        + Bloom's Cognitive Level Mismatch
+                      </button>
+<button class="text-label-sm font-label-sm px-2 py-0.5 rounded border border-outline-variant bg-surface hover:bg-surface-container text-on-surface transition-colors" type="button">
+                        + Credit Calculation Adjustment
+                      </button>
+<button class="text-label-sm font-label-sm px-2 py-0.5 rounded border border-outline-variant bg-surface hover:bg-surface-container text-on-surface transition-colors" type="button">
+                        + Unmapped PO3 Justification Required
+                      </button>
+</div>
+</div>
+<textarea class="w-full rounded border border-outline-variant bg-surface-container-lowest p-2.5 text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container resize-none" placeholder="Provide clear revision directives for the course coordinator..." rows="3"></textarea>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1.5">
+                    * Comment box required when returning spec. Author will receive instant notification and revision checklist.
+                  </p>
+<div class="mt-3 flex justify-end">
+<button class="py-2 px-4 rounded border border-outline-variant text-on-surface hover:border-error hover:text-error text-label-md font-label-md font-semibold flex items-center space-x-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-base">undo</span>
+<span>Return to Author with Comments</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- INACTIVE / RESTRICTED ACTIONS: Author & HOD Permissions Mock -->
+<div class="bg-surface-container-low rounded-lg border border-outline-variant p-space-md">
+<span class="text-label-md font-label-md font-bold text-on-surface tracking-wider block mb-3">
+                OTHER ROLE CAPABILITIES (GOVERNANCE LOCKOUTS)
+              </span>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<!-- Author Restricted Tile -->
+<div class="bg-surface-container-lowest p-3 rounded border border-outline-variant opacity-75">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Author (Course Coordinator)</span>
+<span class="material-symbols-outlined text-sm text-outline">lock</span>
+</div>
+<button class="w-full py-1.5 px-3 rounded bg-surface-container text-on-surface-variant text-label-sm font-label-sm font-medium cursor-not-allowed" disabled="" type="button">
+                    Submit for Review
+                  </button>
+<p class="text-[11px] text-on-surface-variant mt-1.5 leading-normal">
+                    Only Author (Course Coordinator) can submit the initial draft. Currently locked in Review stage.
+                  </p>
+</div>
+<!-- HOD Restricted Tile -->
+<div class="bg-surface-container-lowest p-3 rounded border border-outline-variant opacity-75">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Head of Department (HOD)</span>
+<span class="material-symbols-outlined text-sm text-outline">lock</span>
+</div>
+<button class="w-full py-1.5 px-3 rounded bg-surface-container text-on-surface-variant text-label-sm font-label-sm font-medium cursor-not-allowed" disabled="" type="button">
+                    Final Approve &amp; Seal Specification
+                  </button>
+<p class="text-[11px] text-on-surface-variant mt-1.5 leading-normal">
+                    Only Head of Department (HOD) can execute final accreditation sign-off. Unlocks after Reviewer endorsement.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Comprehensive History & Audit Timeline (5 Cols) -->
+<div class="lg:col-span-5 space-y-space-lg">
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-space-md shadow-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-3 mb-3">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-bold">Governance Audit Trail &amp; History</h3>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Immutable institutional revision log</span>
+</div>
+<button class="text-label-sm font-label-sm text-primary font-semibold hover:underline flex items-center space-x-1" title="Download Log" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Export CSV</span>
+</button>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center space-x-1.5 mb-4 pb-2 border-b border-outline-variant/60">
+<button class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary font-medium">All Events</button>
+<button class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant hover:text-on-surface">Comments</button>
+<button class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant hover:text-on-surface">Status Changes</button>
+</div>
+<!-- Timeline Feed -->
+<div class="space-y-4 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-outline-variant">
+<!-- Event 1: Today, 11:42 AM -->
+<div class="relative flex items-start space-x-3">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[10px] font-bold z-10 shrink-0">
+                    AT
+                  </div>
+<div class="flex-1 bg-surface rounded p-2.5 border border-outline-variant text-body-sm font-body-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Dr. Aris Thorne</span>
+<span class="text-label-sm font-label-sm font-code-tabular text-on-surface-variant">Today, 11:42 AM</span>
+</div>
+<span class="inline-block px-1.5 py-0.2 rounded text-[10px] bg-surface-container text-on-surface-variant mb-1 font-semibold">Author / Course Coordinator</span>
+<p class="text-on-surface">
+                      Submitted spec for peer review: <span class="italic">"All 5 CO action verbs updated to active Bloom's verbs. Reconciled tutorial contact hours to 14 hrs per AICTE guidelines."</span>
+</p>
+</div>
+</div>
+<!-- Event 2: Today, 11:30 AM -->
+<div class="relative flex items-start space-x-3">
+<div class="w-7 h-7 rounded-full bg-surface-container text-on-surface flex items-center justify-center text-[10px] font-bold z-10 shrink-0 border border-outline-variant">
+<span class="material-symbols-outlined text-xs">smart_toy</span>
+</div>
+<div class="flex-1 bg-surface rounded p-2.5 border border-outline-variant text-body-sm font-body-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Automated Validator</span>
+<span class="text-label-sm font-label-sm font-code-tabular text-on-surface-variant">Today, 11:30 AM</span>
+</div>
+<span class="inline-block px-1.5 py-0.2 rounded text-[10px] bg-surface-container text-on-surface-variant mb-1 font-semibold">SpecForge Rule Engine</span>
+<p class="text-on-surface">
+                      Compliance checks passed: 14 validated rules, 0 blocking errors. Ready for committee evaluation.
+                    </p>
+</div>
+</div>
+<!-- Event 3: Yesterday, 4:15 PM -->
+<div class="relative flex items-start space-x-3">
+<div class="w-7 h-7 rounded-full bg-error text-on-error flex items-center justify-center text-[10px] font-bold z-10 shrink-0">
+                    DV
+                  </div>
+<div class="flex-1 bg-surface rounded p-2.5 border border-error-container text-body-sm font-body-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Prof. Devlin Vance</span>
+<span class="text-label-sm font-label-sm font-code-tabular text-on-surface-variant">Yesterday, 4:15 PM</span>
+</div>
+<div class="flex items-center space-x-1 mb-1">
+<span class="inline-block px-1.5 py-0.2 rounded text-[10px] bg-surface-container text-on-surface-variant font-semibold">Reviewer</span>
+<span class="inline-block px-1.5 py-0.2 rounded text-[10px] bg-error-container text-on-error-container font-semibold">Status: Returned</span>
+</div>
+<p class="text-on-surface">
+<span class="italic">"Please provide faculty justification for CO4 zero correlation against PO3 before committee forwarding."</span>
+</p>
+</div>
+</div>
+<!-- Event 4: Yesterday, 2:00 PM -->
+<div class="relative flex items-start space-x-3">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center text-[10px] font-bold z-10 shrink-0">
+                    AT
+                  </div>
+<div class="flex-1 bg-surface rounded p-2.5 border border-outline-variant text-body-sm font-body-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm font-bold text-on-surface">Dr. Aris Thorne</span>
+<span class="text-label-sm font-label-sm font-code-tabular text-on-surface-variant">Yesterday, 2:00 PM</span>
+</div>
+<p class="text-on-surface">
+                      Created revised draft from syllabus DOCX upload (v2.1).
+                    </p>
+</div>
+</div>
+</div>
+<!-- Quick Comment Drafting Box -->
+<div class="mt-4 pt-3 border-t border-outline-variant">
+<span class="text-label-sm font-label-sm font-bold text-on-surface block mb-1.5">Draft Internal Committee Note:</span>
+<div class="relative">
+<input class="w-full pl-3 pr-8 py-2 rounded text-label-sm font-label-sm border border-outline-variant bg-surface focus:ring-1 focus:ring-primary-container focus:border-primary-container" placeholder="Leave persistent remark..." type="text"/>
+<button class="absolute right-1.5 top-1.5 p-1 text-primary hover:text-primary-container" title="Post Remark" type="button">
+<span class="material-symbols-outlined text-base">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Accreditation Governance Metadata Summary -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-space-md">
+<span class="text-label-md font-label-md font-bold text-on-surface block mb-2">NBA AUDIT COMPLIANCE STAMP</span>
+<div class="space-y-1.5 text-label-sm font-label-sm font-code-tabular">
+<div class="flex justify-between py-1 border-b border-outline-variant/40">
+<span class="text-on-surface-variant">Specification ID</span>
+<span class="font-bold text-on-surface">SPEC-2024-CSE-302-V2</span>
+</div>
+<div class="flex justify-between py-1 border-b border-outline-variant/40">
+<span class="text-on-surface-variant">Taxonomy Framework</span>
+<span class="font-bold text-on-surface">Bloom's Revised (Anderson 2001)</span>
+</div>
+<div class="flex justify-between py-1">
+<span class="text-on-surface-variant">Accreditation Cycle</span>
+<span class="font-bold text-on-surface">Tier-1 Autonomous 2024-2027</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BOTTOM STICKY BAR -->
+<footer class="fixed bottom-0 left-0 right-0 h-14 bg-surface-container-lowest border-t border-outline-variant z-50 px-margin-desktop flex items-center justify-between">
+<!-- Left Status Notice -->
+<div class="flex items-center space-x-3">
+<div class="flex items-center space-x-1.5 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-primary">cloud_done</span>
+<span>Auto-saved at <span class="font-code-tabular font-medium text-on-surface">11:46:12 AM</span></span>
+</div>
+<span class="h-3 w-px bg-outline-variant"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant hidden md:inline">Document Version 2.4 (Peer Review in Progress)</span>
+</div>
+<!-- Right Flow CTAs -->
+<div class="flex items-center space-x-2">
+<button class="px-3 py-1.5 rounded border border-outline-variant text-label-md font-label-md text-on-surface hover:bg-surface-container transition-colors" type="button">
+        Discard Changes
+      </button>
+<button class="px-3 py-1.5 rounded border border-outline-variant text-label-md font-label-md text-on-surface hover:bg-surface-container transition-colors" type="button">
+        Save Draft
+      </button>
+<button class="px-4 py-1.5 rounded bg-primary-container text-on-primary hover:bg-primary text-label-md font-label-md font-semibold transition-all flex items-center space-x-1 shadow-sm" type="button">
+<span>Proceed to Step 6: Export Dossier</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</footer>
+</body></html>

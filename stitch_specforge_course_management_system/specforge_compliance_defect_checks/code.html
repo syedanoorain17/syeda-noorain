@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpecForge · Checks Validation Screen (CS302)</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#812438",
+            "surface-variant": "#dee2ec",
+            "on-surface": "#171c23",
+            "on-secondary-fixed-variant": "#861d37",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#ffd9dd",
+            "secondary": "#a6364d",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#4b4547",
+            "surface-container-high": "#e4e8f2",
+            "surface-container": "#eaeef8",
+            "primary-fixed": "#ffd9dd",
+            "surface-container-highest": "#dee2ec",
+            "outline-variant": "#dbc0c2",
+            "error": "#ba1a1a",
+            "outline": "#887173",
+            "on-surface-variant": "#554244",
+            "tertiary-fixed": "#eae0e2",
+            "on-background": "#171c23",
+            "on-primary-fixed": "#400012",
+            "secondary-container": "#fe798f",
+            "surface-dim": "#d6dae4",
+            "tertiary-fixed-dim": "#cdc4c6",
+            "surface-bright": "#f8f9ff",
+            "primary-fixed-dim": "#ffb2bb",
+            "on-secondary-fixed": "#400012",
+            "inverse-primary": "#ffb2bb",
+            "on-secondary-container": "#740c2a",
+            "background": "#f8f9ff",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#1f1a1c",
+            "inverse-surface": "#2c3138",
+            "secondary-fixed-dim": "#ffb2bb",
+            "on-primary": "#ffffff",
+            "on-tertiary-container": "#b2aaac",
+            "surface": "#f8f9ff",
+            "surface-tint": "#a03c4f",
+            "surface-container-low": "#f0f4fd",
+            "primary-container": "#781d32",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-primary-container": "#ff879a",
+            "primary": "#5a031d",
+            "tertiary": "#2e292b",
+            "inverse-on-surface": "#edf1fb",
+            "tertiary-container": "#443f41"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-desktop": "2rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.25rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "headline-xl": ["Inter"],
+            "code-tabular": ["JetBrains Mono"],
+            "body-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "headline-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "headline-xl": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "code-tabular": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "500" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.35rem", "fontWeight": "400" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.45rem", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 1.15rem;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    /* Hairline paper aesthetics */
+    .hairline-border {
+      border: 1px solid #E5E0D8;
+    }
+    .hairline-border-b {
+      border-bottom: 1px solid #E5E0D8;
+    }
+    .hairline-border-r {
+      border-right: 1px solid #E5E0D8;
+    }
+    .hairline-border-t {
+      border-top: 1px solid #E5E0D8;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- ================= TOP APP BAR (from Shared Components JSON) ================= -->
+<header class="bg-surface-container-lowest flex justify-between items-center w-full px-margin-desktop h-14 sticky top-0 z-50 hairline-border-b">
+<!-- Left: Brand Logo & Academic Session -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">SpecForge</span>
+<span class="font-code-tabular text-label-sm text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">AY 2024–25</span>
+</div>
+<div class="h-4 w-px bg-outline-variant hidden sm:block"></div>
+<!-- Role Switcher Segmented Control (Author active) -->
+<nav class="hidden md:flex items-center bg-surface-container-low p-0.5 rounded border border-outline-variant text-label-md">
+<button class="bg-surface-container-lowest text-primary font-semibold px-3 py-1 rounded shadow-sm flex items-center gap-1.5 transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+          Author
+        </button>
+<button class="text-on-surface-variant hover:text-on-surface px-3 py-1 rounded transition-colors duration-150">
+          Reviewer
+        </button>
+<button class="text-on-surface-variant hover:text-on-surface px-3 py-1 rounded transition-colors duration-150">
+          HOD
+        </button>
+</nav>
+</div>
+<!-- Center/Right: Document Status & Actions -->
+<div class="flex items-center gap-3">
+<!-- Status Chip: '3 Errors, 2 Warnings' -->
+<div class="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded bg-[#FEF2F2] border border-[#FECACA] text-[#B91C1C] text-label-sm">
+<span class="w-2 h-2 rounded-full bg-[#B91C1C] animate-pulse"></span>
+<span class="font-medium">3 Errors, 2 Warnings</span>
+</div>
+<!-- Secondary: Save Draft -->
+<button class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded hairline-border bg-surface-container-lowest text-on-surface hover:bg-surface-container text-label-lg font-label-lg transition-colors duration-150">
+        Save Draft
+      </button>
+<!-- Primary Action: Submit for Review / Proceed -->
+<button class="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded bg-primary-container text-on-primary hover:bg-primary font-label-lg text-label-lg transition-colors duration-150 shadow-sm">
+<span>Proceed to Workflow</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<!-- Trailing Icon Actions -->
+<div class="flex items-center gap-1 ml-1 text-on-surface-variant">
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface transition-colors duration-150 relative" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#B91C1C] rounded-full"></span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface transition-colors duration-150" title="Help Documentation">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<!-- User Profile Avatar: Dr. Aris Thorne / Prof. Eleanor Vance -->
+<div class="flex items-center gap-2.5 pl-2 hairline-border-l border-[#E5E0D8]">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-primary flex items-center justify-center text-label-md font-bold tracking-tight">
+          AT
+        </div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-label-md font-label-md text-on-surface leading-tight">Dr. Aris Thorne</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Assoc. Professor, CSE</span>
+</div>
+</div>
+</div>
+</header>
+<!-- ================= MAIN WORKSPACE BODY ================= -->
+<div class="flex-1 flex overflow-hidden">
+<!-- ================= LEFT WORKFLOW STEPPER SIDEBAR ================= -->
+<aside class="w-[260px] bg-surface-container-low shrink-0 hidden md:flex flex-col justify-between hairline-border-r h-[calc(100vh-3.5rem)] sticky top-14 overflow-y-auto">
+<div>
+<!-- Course Header Card -->
+<div class="p-4 hairline-border-b bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-1">
+<span class="font-code-tabular text-label-sm font-bold text-primary px-1.5 py-0.5 rounded bg-primary-fixed">CS302</span>
+<span class="font-code-tabular text-label-sm text-on-surface-variant">Credits: 4.0</span>
+</div>
+<h2 class="text-label-lg font-label-lg text-on-surface leading-snug">Data Structures &amp; Algorithms</h2>
+<div class="flex items-center gap-2 mt-2 font-code-tabular text-label-sm text-on-surface-variant">
+<span>L-T-P: 3-1-0</span>
+<span>·</span>
+<span class="text-[#15803D] font-medium">B.Tech Sem IV</span>
+</div>
+</div>
+<!-- Stepper Navigation Steps -->
+<div class="p-3">
+<div class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider px-3 py-2">Workflow Progress</div>
+<nav class="space-y-1 relative before:absolute before:left-[1.65rem] before:top-4 before:bottom-4 before:w-px before:bg-outline-variant">
+<!-- Step 1: Upload (Completed) -->
+<a class="group flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container transition-colors relative z-10" href="#">
+<span class="w-6 h-6 rounded-full bg-[#F0FDF4] border border-[#BBF7D0] text-[#15803D] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md">1. Upload</span>
+<span class="text-label-sm text-on-surface-variant">Source syllabus parsed</span>
+</div>
+</a>
+<!-- Step 2: Spec (Completed) -->
+<a class="group flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container transition-colors relative z-10" href="#">
+<span class="w-6 h-6 rounded-full bg-[#F0FDF4] border border-[#BBF7D0] text-[#15803D] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md">2. Spec</span>
+<span class="text-label-sm text-on-surface-variant">Core metadata &amp; modules</span>
+</div>
+</a>
+<!-- Step 3: CO-PO-PSO Map (Completed) -->
+<a class="group flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container transition-colors relative z-10" href="#">
+<span class="w-6 h-6 rounded-full bg-[#F0FDF4] border border-[#BBF7D0] text-[#15803D] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md">3. CO-PO-PSO Map</span>
+<span class="text-label-sm text-on-surface-variant">Correlation values set</span>
+</div>
+</a>
+<!-- Step 4: Checks (ACTIVE STATE) -->
+<div class="bg-surface-container-lowest text-primary font-label-md border-l-4 border-primary pl-3 py-2.5 rounded-lg shadow-sm flex items-center justify-between relative z-10">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 font-code-tabular text-xs font-bold">
+                  4
+                </span>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Checks</span>
+<span class="text-label-sm text-secondary">Accreditation audit</span>
+</div>
+</div>
+<span class="px-1.5 py-0.5 rounded-full text-xs font-code-tabular font-bold bg-[#FEF2F2] text-[#B91C1C] border border-[#FECACA]">
+                5 issues
+              </span>
+</div>
+<!-- Step 5: Workflow (Pending) -->
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant/70 relative z-10">
+<span class="w-6 h-6 rounded-full hairline-border bg-surface-container flex items-center justify-center shrink-0 font-code-tabular text-xs text-on-surface-variant">
+                5
+              </span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md">5. Workflow</span>
+<span class="text-label-sm text-on-surface-variant/60">Peer &amp; HOD Sign-off</span>
+</div>
+</div>
+<!-- Step 6: Export (Pending) -->
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant/70 relative z-10">
+<span class="w-6 h-6 rounded-full hairline-border bg-surface-container flex items-center justify-center shrink-0 font-code-tabular text-xs text-on-surface-variant">
+                6
+              </span>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md">6. Export</span>
+<span class="text-label-sm text-on-surface-variant/60">NBA Tier-1 Dossier PDF</span>
+</div>
+</div>
+</nav>
+</div>
+</div>
+<!-- Sidebar Footer Links -->
+<div class="p-3 hairline-border-t bg-surface-container-lowest/60">
+<a class="flex items-center gap-2.5 px-3 py-2 text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-base">menu_book</span>
+<span>Accreditation Guidelines</span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-base">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- ================= MAIN DOCUMENT WORKBENCH ================= -->
+<main class="flex-1 overflow-y-auto bg-surface pb-28">
+<div class="max-w-[1400px] mx-auto p-4 md:p-6 lg:p-8 space-y-6">
+<!-- Breadcrumb Navigation -->
+<nav class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant flex-wrap">
+<a class="hover:text-primary transition-colors" href="#">Curriculum</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Department of Computer Science</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-code-tabular font-medium text-on-surface">CS-302</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-semibold">Step 04: Automated Compliance &amp; Quality Checks</span>
+</nav>
+<!-- Header Hero & Audit Subtitle -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 hairline-border-b pb-5 border-[#E5E0D8]">
+<div class="space-y-1">
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Curriculum &amp; Accreditation Validation Checks</h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-3xl">
+              Automated verification against NBA Tier-1 accreditation rubrics, Washington Accord criteria, and institutional curriculum standards.
+            </p>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded hairline-border bg-surface-container-lowest hover:bg-surface-container text-label-md text-on-surface transition-colors font-medium">
+<span class="material-symbols-outlined text-base">refresh</span>
+<span>Re-run All Checks</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded hairline-border bg-surface-container-lowest hover:bg-surface-container text-label-md text-on-surface transition-colors font-medium">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Export Audit Log (.csv)</span>
+</button>
+</div>
+</div>
+<!-- Top Metric Summary Cards (Bento-style row) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Error Metric Card -->
+<div class="bg-surface-container-lowest p-4 rounded hairline-border flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-medium text-on-surface-variant">Blocking Deficiencies</span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#B91C1C]"></span>
+</div>
+<div class="my-2">
+<div class="text-headline-xl font-headline-xl text-[#B91C1C] leading-none">3</div>
+<div class="text-label-sm font-semibold text-[#B91C1C] mt-1">Errors Detected</div>
+</div>
+<p class="text-label-sm text-on-surface-variant border-t border-[#F5EBEB] pt-2">
+              Mandatory fixes blocking approval submission.
+            </p>
+</div>
+<!-- Warning Metric Card -->
+<div class="bg-surface-container-lowest p-4 rounded hairline-border flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-medium text-on-surface-variant">Curricular Advisories</span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#B45309]"></span>
+</div>
+<div class="my-2">
+<div class="text-headline-xl font-headline-xl text-[#B45309] leading-none">2</div>
+<div class="text-label-sm font-semibold text-[#B45309] mt-1">Warnings Logged</div>
+</div>
+<p class="text-label-sm text-on-surface-variant border-t border-[#FEF3C7]/60 pt-2">
+              Advisory revision recommended prior to HOD audit.
+            </p>
+</div>
+<!-- Passed Metric Card -->
+<div class="bg-surface-container-lowest p-4 rounded hairline-border flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-medium text-on-surface-variant">Validated Standards</span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#15803D]"></span>
+</div>
+<div class="my-2">
+<div class="text-headline-xl font-headline-xl text-[#15803D] leading-none">14</div>
+<div class="text-label-sm font-semibold text-[#15803D] mt-1">Passed Checks</div>
+</div>
+<p class="text-label-sm text-on-surface-variant border-t border-[#DCFCE7] pt-2">
+              Fully compliant criteria with NBA Tier-1 guidelines.
+            </p>
+</div>
+<!-- Compliance Score & Progress Bar -->
+<div class="bg-surface-container-lowest p-4 rounded hairline-border flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-medium text-on-surface-variant">Overall Compliance</span>
+<span class="font-code-tabular text-label-sm text-secondary font-bold">Rubric v4.2</span>
+</div>
+<div class="my-2">
+<div class="flex items-baseline gap-1.5">
+<span class="text-headline-xl font-headline-xl text-primary leading-none">73.6%</span>
+<span class="text-label-sm text-on-surface-variant">Ready</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-primary-container h-full rounded-full transition-all duration-300" style="width: 73.6%;"></div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant border-t border-[#E5E0D8] pt-2">
+              1 auto-fix awaiting faculty manual acceptance.
+            </p>
+</div>
+</div>
+<!-- Filter & Control Toolbar -->
+<div class="bg-surface-container-lowest p-3.5 rounded hairline-border flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+<!-- Left: Search Box -->
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 rounded hairline-border bg-surface text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent text-sm" placeholder="Search defects, codes, or keywords..." type="text"/>
+</div>
+<!-- Right: Pills & Toggles -->
+<div class="flex flex-wrap items-center gap-2 text-label-md">
+<!-- Severity Filter Tabs -->
+<div class="flex items-center bg-surface-container-low p-0.5 rounded border border-outline-variant">
+<button class="bg-surface-container-lowest text-on-surface font-semibold px-2.5 py-1 rounded shadow-xs">All Severities (5)</button>
+<button class="text-[#B91C1C] hover:bg-surface-container-lowest px-2.5 py-1 rounded transition-colors">High / Error (3)</button>
+<button class="text-[#B45309] hover:bg-surface-container-lowest px-2.5 py-1 rounded transition-colors">Medium / Warning (2)</button>
+<button class="text-on-surface-variant hover:bg-surface-container-lowest px-2.5 py-1 rounded transition-colors">Low (0)</button>
+</div>
+<!-- Section Selector -->
+<div class="relative">
+<select class="py-1 pl-3 pr-8 rounded hairline-border bg-surface text-label-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container cursor-pointer">
+<option>All Sections (4)</option>
+<option>Course Outcomes (2)</option>
+<option>Credit Hours (1)</option>
+<option>CO-PO Mapping (1)</option>
+<option>Assessment (1)</option>
+</select>
+</div>
+<!-- Resolved vs Auto-Applied Toggle -->
+<label class="flex items-center gap-2 cursor-pointer pl-2 select-none text-label-sm text-on-surface-variant border-l border-outline-variant">
+<input checked="" class="w-4 h-4 rounded text-primary-container focus:ring-primary-container border-gray-300" type="checkbox"/>
+<span>Show auto-applied fixes</span>
+</label>
+</div>
+</div>
+<!-- ================= DEFECTS LIST GROUPED BY SECTION ================= -->
+<div class="space-y-6">
+<!-- ================= SECTION 1: COURSE OUTCOMES ================= -->
+<section class="bg-surface-container-lowest rounded hairline-border overflow-hidden">
+<div class="bg-surface-container-low px-4 py-2.5 hairline-border-b flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">psychology</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">3. Course Outcomes (COs)</h3>
+<span class="font-code-tabular text-label-sm bg-[#FEF2F2] text-[#B91C1C] border border-[#FECACA] px-2 py-0.5 rounded-full font-bold">2 defects</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">Bloom's Taxonomy Level Audit</span>
+</div>
+<div class="divide-y divide-[#E5E0D8]">
+<!-- Row 1: CO_ACTION_VERB_PASSIVE -->
+<div class="p-4 sm:p-5 hover:bg-surface-container-low/40 transition-colors">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+<div class="space-y-2.5 flex-1">
+<div class="flex items-center flex-wrap gap-2">
+<span class="px-2 py-0.5 rounded bg-[#FEF2F2] border border-[#FECACA] text-[#B91C1C] text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B91C1C]"></span>
+                        High
+                      </span>
+<code class="font-code-tabular text-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold tracking-wide">CO_ACTION_VERB_PASSIVE</code>
+<span class="text-on-surface-variant text-label-sm">·</span>
+<span class="text-on-surface-variant text-label-sm font-medium">Source: Syllabus Draft · Section: 3. Course Outcomes (CO2)</span>
+</div>
+<!-- Defect & Explanation -->
+<div class="text-body-md text-on-surface">
+<strong class="font-semibold text-on-surface">Issue:</strong> Outcome statement uses passive verb <span class="bg-[#FEE2E2] text-[#991B1B] font-code-tabular px-1.5 py-0.5 rounded text-xs line-through">"Understand"</span> which is non-measurable under Revised Bloom's Taxonomy.
+                    </div>
+<!-- Auto-Fix Card Container -->
+<div class="bg-[#F0FDF4] border border-[#BBF7D0] rounded p-3 text-body-sm space-y-1">
+<div class="flex items-center gap-1.5 text-[#15803D] text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span>
+<span>Auto-Fix Applied (Recommendation Engine):</span>
+</div>
+<p class="text-on-surface">
+                        Replaced with active K3 cognitive verb: <span class="font-semibold text-[#15803D]">"Design and implement self-balancing search trees"</span> in adherence to Washington Accord WA2 benchmark.
+                      </p>
+</div>
+</div>
+<!-- Action Right Column -->
+<div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-2 shrink-0 pt-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] font-label-sm text-xs font-semibold">
+<span class="material-symbols-outlined text-xs">done_all</span>
+                      Auto-Fixed
+                    </span>
+<div class="flex items-center gap-2">
+<button class="text-primary hover:text-primary-container text-label-md font-semibold underline underline-offset-2">View in Spec</button>
+<span class="text-outline-variant">·</span>
+<button class="text-on-surface-variant hover:text-error text-label-md">Revert</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Row 2: CO_MISSING_IN_TABLE -->
+<div class="p-4 sm:p-5 hover:bg-surface-container-low/40 transition-colors">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+<div class="space-y-2.5 flex-1">
+<div class="flex items-center flex-wrap gap-2">
+<span class="px-2 py-0.5 rounded bg-[#FEF2F2] border border-[#FECACA] text-[#B91C1C] text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B91C1C]"></span>
+                        High
+                      </span>
+<code class="font-code-tabular text-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold tracking-wide">CO_MISSING_IN_TABLE</code>
+<span class="text-on-surface-variant text-label-sm">·</span>
+<span class="text-on-surface-variant text-label-sm font-medium">Source: Question-paper Blueprint · Section: Section B Mid-Term</span>
+</div>
+<!-- Defect & Explanation -->
+<div class="text-body-md text-on-surface">
+<strong class="font-semibold text-on-surface">Issue:</strong> Question Q4 references unmapped outcome <span class="bg-[#FEE2E2] text-[#991B1B] font-code-tabular px-1.5 py-0.5 rounded text-xs">"CO6"</span> which does not exist in the active 5-outcome course specification matrix.
+                    </div>
+<!-- Auto-Fix Applied -->
+<div class="bg-[#F0FDF4] border border-[#BBF7D0] rounded p-3 text-body-sm space-y-1">
+<div class="flex items-center gap-1.5 text-[#15803D] text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span>
+<span>Auto-Fix Ready:</span>
+</div>
+<p class="text-on-surface">
+                        Re-indexed question rubric to map directly to <span class="font-semibold text-[#15803D]">CO4 (Intractability &amp; NP-Completeness)</span> based on module keywords "Cook's Theorem &amp; reductions".
+                      </p>
+</div>
+</div>
+<!-- Action Right Column -->
+<div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-2 shrink-0 pt-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#FEF3C7] text-[#B45309] font-label-sm text-xs font-semibold">
+<span class="material-symbols-outlined text-xs">pending</span>
+                      Pending Acceptance
+                    </span>
+<button class="px-3 py-1 rounded bg-primary-container text-on-primary hover:bg-primary text-label-sm font-semibold transition-colors shadow-xs">
+                      Accept Fix
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 2: COURSE SIZE AND CREDITS ================= -->
+<section class="bg-surface-container-lowest rounded hairline-border overflow-hidden">
+<div class="bg-surface-container-low px-4 py-2.5 hairline-border-b flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">2. Course Size and Credits</h3>
+<span class="font-code-tabular text-label-sm bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A] px-2 py-0.5 rounded-full font-bold">1 warning</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">AICTE Statutory Credit Formulation</span>
+</div>
+<div class="p-4 sm:p-5 hover:bg-surface-container-low/40 transition-colors">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+<div class="space-y-2.5 flex-1">
+<div class="flex items-center flex-wrap gap-2">
+<span class="px-2 py-0.5 rounded bg-[#FFFBEB] border border-[#FDE68A] text-[#B45309] text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B45309]"></span>
+                      Medium
+                    </span>
+<code class="font-code-tabular text-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold tracking-wide">CREDIT_HOUR_MISMATCH_AICTE</code>
+<span class="text-on-surface-variant text-label-sm">·</span>
+<span class="text-on-surface-variant text-label-sm font-medium">Source: Department Syllabus · Section: 2. Contact Hours Breakdown</span>
+</div>
+<!-- Defect Description -->
+<div class="text-body-md text-on-surface">
+<strong class="font-semibold text-on-surface">Issue:</strong> Total lecture contact hours (42 hrs) and tutorial hours (10 hrs) did not reconcile to the 4.0 credit allocation formula <span class="font-code-tabular text-xs bg-surface-container-high px-1 py-0.5 rounded">(L + T + 0.5P)</span>.
+                  </div>
+<!-- Auto-Fix Box -->
+<div class="bg-[#F0FDF4] border border-[#BBF7D0] rounded p-3 text-body-sm space-y-1">
+<div class="flex items-center gap-1.5 text-[#15803D] text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span>
+<span>Auto-Fix Applied:</span>
+</div>
+<p class="text-on-surface">
+                      Reconciled tutorial hours from 10 hrs to <span class="font-semibold text-[#15803D]">14 hrs (1 hr/week over 14 teaching weeks)</span> to ensure exact 4.0 credit tally and satisfy statutory accreditation contact-hour minimums.
+                    </p>
+</div>
+</div>
+<div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-2 shrink-0 pt-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] font-label-sm text-xs font-semibold">
+<span class="material-symbols-outlined text-xs">done_all</span>
+                    Auto-Fixed
+                  </span>
+<button class="text-primary hover:text-primary-container text-label-md font-semibold underline underline-offset-2">View Breakdown</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 3: CO-PO-PSO ALIGNMENT MATRIX ================= -->
+<section class="bg-surface-container-lowest rounded hairline-border overflow-hidden">
+<div class="bg-surface-container-low px-4 py-2.5 hairline-border-b flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">grid_on</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">3. CO-PO-PSO Alignment Matrix</h3>
+<span class="font-code-tabular text-label-sm bg-[#FEF2F2] text-[#B91C1C] border border-[#FECACA] px-2 py-0.5 rounded-full font-bold">1 defect</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">NBA Criterion 3 Mapping Consistency</span>
+</div>
+<div class="p-4 sm:p-5 hover:bg-surface-container-low/40 transition-colors">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+<div class="space-y-2.5 flex-1">
+<div class="flex items-center flex-wrap gap-2">
+<span class="px-2 py-0.5 rounded bg-[#FEF2F2] border border-[#FECACA] text-[#B91C1C] text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B91C1C]"></span>
+                      High
+                    </span>
+<code class="font-code-tabular text-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold tracking-wide">NBA_CR3_UNMAPPED_CORE_PO</code>
+<span class="text-on-surface-variant text-label-sm">·</span>
+<span class="text-on-surface-variant text-label-sm font-medium">Source: Alignment Matrix · Section: CO4 → PO3 (Design &amp; Development)</span>
+</div>
+<!-- Defect Description -->
+<div class="text-body-md text-on-surface">
+<strong class="font-semibold text-on-surface">Issue:</strong> High Bloom's level outcome (K4 Analyze) has <span class="bg-[#FEE2E2] text-[#991B1B] font-semibold px-1 rounded">zero correlation (blank)</span> to core program outcome PO3 without mandatory exemption justification.
+                  </div>
+<!-- Recommendation -->
+<div class="bg-surface-container-low border border-outline-variant rounded p-3 text-body-sm space-y-1">
+<div class="flex items-center gap-1.5 text-primary text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+<span>Proposed Resolution:</span>
+</div>
+<p class="text-on-surface">
+                      Assigned correlation strength <span class="font-semibold font-code-tabular">Level 1 (Moderate)</span> with faculty rationale drafted from problem analysis rubric: <em>"Algorithm complexity modeling contributes directly to sub-system constraint synthesis."</em>
+</p>
+</div>
+</div>
+<div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-2 shrink-0 pt-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#FEF2F2] text-[#B91C1C] font-label-sm text-xs font-semibold">
+<span class="material-symbols-outlined text-xs">error</span>
+                    Review Required
+                  </span>
+<button class="px-3.5 py-1.5 rounded hairline-border bg-surface-container-lowest text-primary hover:bg-surface-container text-label-md font-semibold transition-colors flex items-center gap-1">
+<span>Edit in Matrix</span>
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 4: ASSESSMENT SCHEME & WEIGHTS ================= -->
+<section class="bg-surface-container-lowest rounded hairline-border overflow-hidden">
+<div class="bg-surface-container-low px-4 py-2.5 hairline-border-b flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">fact_check</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">6. Assessment Scheme &amp; Weights</h3>
+<span class="font-code-tabular text-label-sm bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A] px-2 py-0.5 rounded-full font-bold">1 warning</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">Cognitive Skill Weightage Distribution</span>
+</div>
+<div class="p-4 sm:p-5 hover:bg-surface-container-low/40 transition-colors">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+<div class="space-y-2.5 flex-1">
+<div class="flex items-center flex-wrap gap-2">
+<span class="px-2 py-0.5 rounded bg-[#FFFBEB] border border-[#FDE68A] text-[#B45309] text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B45309]"></span>
+                      Medium
+                    </span>
+<code class="font-code-tabular text-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold tracking-wide">BLOOM_WEIGHTAGE_SKEW</code>
+<span class="text-on-surface-variant text-label-sm">·</span>
+<span class="text-on-surface-variant text-label-sm font-medium">Source: Exam Blueprint · Section: CIE Quiz Component</span>
+</div>
+<!-- Defect Description -->
+<div class="text-body-md text-on-surface">
+<strong class="font-semibold text-on-surface">Issue:</strong> Continuous Internal Evaluation (CIE) allocates <span class="text-[#B45309] font-semibold">70% weight</span> to lower-order cognitive skills (K1/K2), exceeding the 40% department threshold.
+                  </div>
+<!-- Auto-Fix Box -->
+<div class="bg-[#F0FDF4] border border-[#BBF7D0] rounded p-3 text-body-sm space-y-1">
+<div class="flex items-center gap-1.5 text-[#15803D] text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span>
+<span>Auto-Fix Applied:</span>
+</div>
+<p class="text-on-surface">
+                      Rebalanced Quiz 2 and Problem Set 3 questions toward higher-order analytical problems <span class="font-semibold text-[#15803D]">(K3/K4: 55%, K1/K2: 45%)</span> to align with autonomous curriculum regulations.
+                    </p>
+</div>
+</div>
+<div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-2 shrink-0 pt-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] font-label-sm text-xs font-semibold">
+<span class="material-symbols-outlined text-xs">done_all</span>
+                    Auto-Fixed
+                  </span>
+<button class="text-primary hover:text-primary-container text-label-md font-semibold underline underline-offset-2">Inspect Blueprint</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- ================= COLLAPSED PASSED CHECKS ACCORDION ================= -->
+<section class="bg-surface-container-lowest rounded hairline-border overflow-hidden">
+<details class="group" open="">
+<summary class="flex items-center justify-between p-4 cursor-pointer select-none bg-surface-container-low hover:bg-surface-container transition-colors list-none">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#15803D] text-xl font-bold">check_circle</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Passed Accreditation &amp; Compliance Checks</span>
+<span class="font-code-tabular text-label-sm bg-[#F0FDF4] text-[#15803D] border border-[#BBF7D0] px-2 py-0.5 rounded-full font-bold">14 Verified Rules</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm text-on-surface-variant hidden sm:inline">Click to collapse</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</div>
+</summary>
+<div class="p-4 bg-surface-container-lowest divide-y divide-[#E5E0D8]">
+<!-- Passed Item 1 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+<code class="font-code-tabular text-xs font-semibold text-on-surface">SEE_CIE_SUM_100_PERCENT</code>
+<span class="text-label-sm text-on-surface-variant">· Evaluation Scheme Integrity</span>
+</div>
+<p class="text-body-sm text-on-surface-variant pl-3.5">
+                    Semester End Examination (SEE 60%) and Continuous Internal Evaluation (CIE 40%) sum exactly to 100%.
+                  </p>
+</div>
+<span class="text-label-sm font-semibold text-[#15803D] shrink-0 font-code-tabular">PASS</span>
+</div>
+<!-- Passed Item 2 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+<code class="font-code-tabular text-xs font-semibold text-on-surface">PO_COVERAGE_THRESHOLD</code>
+<span class="text-label-sm text-on-surface-variant">· Washington Accord WA1–WA12</span>
+</div>
+<p class="text-body-sm text-on-surface-variant pl-3.5">
+                    All mandatory Program Outcomes meet the department minimum mapping threshold (PO1, PO2, PO3, PO4, PO5 covered).
+                  </p>
+</div>
+<span class="text-label-sm font-semibold text-[#15803D] shrink-0 font-code-tabular">PASS</span>
+</div>
+<!-- Passed Item 3 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+<code class="font-code-tabular text-xs font-semibold text-on-surface">PREREQUISITE_CYCLE_CHECK</code>
+<span class="text-label-sm text-on-surface-variant">· DAG Dependency Verification</span>
+</div>
+<p class="text-body-sm text-on-surface-variant pl-3.5">
+                    No cyclic prerequisites detected (Validated upstream prerequisite: CS201 Fundamentals of Programming).
+                  </p>
+</div>
+<span class="text-label-sm font-semibold text-[#15803D] shrink-0 font-code-tabular">PASS</span>
+</div>
+<!-- Passed Item 4 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+<code class="font-code-tabular text-xs font-semibold text-on-surface">SYLLABUS_WEEK_ALLOCATION</code>
+<span class="text-label-sm text-on-surface-variant">· Semester Academic Calendar</span>
+</div>
+<p class="text-body-sm text-on-surface-variant pl-3.5">
+                    14 instruction weeks fully scheduled with corresponding module lecture hours and laboratory sessions accounted for.
+                  </p>
+</div>
+<span class="text-label-sm font-semibold text-[#15803D] shrink-0 font-code-tabular">PASS</span>
+</div>
+</div>
+</details>
+</section>
+</div>
+</main>
+</div>
+<!-- ================= BOTTOM STICKY ACTION BAR ================= -->
+<footer class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest hairline-border-t px-margin-desktop py-3 z-40 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
+<!-- Left status text -->
+<div class="flex items-center gap-2.5 text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#15803D]"></span>
+<span class="font-medium text-on-surface">Auto-saved 1m ago</span>
+</span>
+<span>·</span>
+<span class="font-code-tabular text-xs text-on-surface-variant">5 defects logged (4 auto-fixed, 1 requires manual sign-off)</span>
+</div>
+<!-- Right button cluster -->
+<div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+<button class="px-3.5 py-1.5 rounded text-label-md text-on-surface-variant hover:text-error transition-colors">
+        Discard Changes
+      </button>
+<button class="px-3.5 py-1.5 rounded hairline-border bg-surface-container-lowest text-on-surface hover:bg-surface-container text-label-md font-medium transition-colors">
+        Save Draft
+      </button>
+<button class="px-4 py-1.5 rounded bg-primary-container text-on-primary hover:bg-primary text-label-lg font-label-lg flex items-center gap-1.5 transition-colors shadow-sm">
+<span>Proceed to Step 5: Workflow</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</footer>
+</body></html>
